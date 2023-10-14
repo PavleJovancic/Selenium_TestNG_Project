@@ -60,6 +60,19 @@ public class LoginTests extends BaseTest{
         Assert.assertEquals(loginPage.getCurrentPageURL(), baseUrl + "/login",
                 "Page does not redirect when password is incorrect");
     }
+    @Test (priority = 4, retryAnalyzer = RetryAnalyzer.class)
+    public void verifyLoginWithCorrectCredentials(){
+        String email = "admin@admin.com";
+        String password = "12345";
+
+        loginPage.clearAndSendKeysToEmailInputField(email);
+        loginPage.clearAndSendKeysToPasswordInputField(password);
+        loginPage.clickLoginButton();
+
+        wait
+                .withMessage("Login with correct credentials should redirect to home page")
+                .until(ExpectedConditions.urlToBe(baseUrl + "/home"));
+    }
 
 
 
