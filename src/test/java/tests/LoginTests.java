@@ -29,7 +29,7 @@ public class LoginTests extends BaseTest{
     @Test (priority = 2, retryAnalyzer = RetryAnalyzer.class)
     public void verifyDisplayErrorMessageWhenUserDoesNotExists(){
             String email = "userdoesnotexist@gmail.com";
-            String password = "password123";
+            String password = "incorrectpassword";
 
             loginPage.clearAndSendKeysToEmailInputField(email);
             loginPage.clearAndSendKeysToPasswordInputField(password);
@@ -43,6 +43,24 @@ public class LoginTests extends BaseTest{
             Assert.assertEquals(loginPage.getCurrentPageURL(), baseUrl + "/login",
                     "Page does not redirect when user does not exist");
     }
+    @Test (priority = 3, retryAnalyzer = RetryAnalyzer.class)
+    public void verifyDisplayErrorWhenUsingIncorrectPassword(){
+        String email = "admin@admin.com";
+        String password = "incorrectpassword";
+
+        loginPage.clearAndSendKeysToEmailInputField(email);
+        loginPage.clearAndSendKeysToPasswordInputField(password);
+        loginPage.clickLoginButton();
+
+        wait
+                .withMessage("Error message should appear when password is incorrect")
+                .until(ExpectedConditions.visibilityOf(loginPage.getErrorMessage()));
+        Assert.assertEquals(loginPage.getErrorMessageText(), "Wrong password",
+                "Error message should be 'Wrong password'");
+        Assert.assertEquals(loginPage.getCurrentPageURL(), baseUrl + "/login",
+                "Page does not redirect when password is incorrect");
+    }
+
 
 
 }
