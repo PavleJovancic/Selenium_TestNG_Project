@@ -12,4 +12,7 @@ public class BasePage {
         this.driver = driver;
         this.wait = wait;
     }
+    public String getCurrentPageURL(){
+        return driver.getCurrentUrl();
+    }
 }

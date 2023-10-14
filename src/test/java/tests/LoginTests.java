@@ -26,5 +26,23 @@ public class LoginTests extends BaseTest{
                 "Password input type should be password");
     }
 
+    @Test (priority = 2, retryAnalyzer = RetryAnalyzer.class)
+    public void verifyDisplayErrorMessageWhenUserDoesNotExists(){
+            String email = "userdoesnotexist@gmail.com";
+            String password = "password123";
+
+            loginPage.clearAndSendKeysToEmailInputField(email);
+            loginPage.clearAndSendKeysToPasswordInputField(password);
+            loginPage.clickLoginButton();
+
+            wait
+                    .withMessage("Error message should appear when user does not exist")
+                    .until(ExpectedConditions.visibilityOf(loginPage.getErrorMessage()));
+            Assert.assertEquals(loginPage.getErrorMessageText(), "User does not exists",
+                    "Error message should be 'User does not exists'");
+            Assert.assertEquals(loginPage.getCurrentPageURL(), baseUrl + "/login",
+                    "Page does not redirect when user does not exist");
+    }
+
 
 }
