@@ -31,9 +31,7 @@ public class LoginTests extends BaseTest{
             String email = "userdoesnotexist@gmail.com";
             String password = "incorrectpassword";
 
-            loginPage.clearAndSendKeysToEmailInputField(email);
-            loginPage.clearAndSendKeysToPasswordInputField(password);
-            loginPage.clickLoginButton();
+            loginPage.login(email, password);
 
             wait
                     .withMessage("Error message should appear when user does not exist")
@@ -48,9 +46,7 @@ public class LoginTests extends BaseTest{
         String email = "admin@admin.com";
         String password = "incorrectpassword";
 
-        loginPage.clearAndSendKeysToEmailInputField(email);
-        loginPage.clearAndSendKeysToPasswordInputField(password);
-        loginPage.clickLoginButton();
+        loginPage.login(email, password);;
 
         wait
                 .withMessage("Error message should appear when password is incorrect")
@@ -65,9 +61,7 @@ public class LoginTests extends BaseTest{
         String email = "admin@admin.com";
         String password = "12345";
 
-        loginPage.clearAndSendKeysToEmailInputField(email);
-        loginPage.clearAndSendKeysToPasswordInputField(password);
-        loginPage.clickLoginButton();
+        loginPage.login(email, password);
 
         wait
                 .withMessage("Login with correct credentials should redirect to home page")
@@ -78,9 +72,7 @@ public class LoginTests extends BaseTest{
         String email = "admin@admin.com";
         String password = "12345";
 
-        loginPage.clearAndSendKeysToEmailInputField(email);
-        loginPage.clearAndSendKeysToPasswordInputField(password);
-        loginPage.clickLoginButton();
+        loginPage.login(email, password);
 
         wait
                 .withMessage("Login with correct credentials should redirect to home page")

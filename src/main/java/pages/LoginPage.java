@@ -42,4 +42,9 @@ public class LoginPage extends BasePage{
     public String getErrorMessageText(){
         return driver.findElement(By.cssSelector(".v-snack__wrapper li")).getText();
     }
+    public void login(String username, String password){
+        clearAndSendKeysToEmailInputField(username);
+        clearAndSendKeysToPasswordInputField(password);
+        clickLoginButton();
+    }
 }
