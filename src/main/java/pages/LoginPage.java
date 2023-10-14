@@ -13,8 +13,14 @@ public class LoginPage extends BasePage{
     public WebElement getEmailInputField(){
         return driver.findElement(By.id("email"));
     }
+    public String getEmailInputFieldType(){
+        return getEmailInputField().getAttribute("type");
+    }
     public WebElement getPasswordInputField(){
         return driver.findElement(By.id("password"));
+    }
+    public String getPasswordInputFieldType(){
+        return getPasswordInputField().getAttribute("type");
     }
     public WebElement getLoginButton(){
         return driver.findElement(By.cssSelector("button[type=submit]"));
