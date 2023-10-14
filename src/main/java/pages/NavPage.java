@@ -33,26 +33,47 @@ public class NavPage extends BasePage{
     public WebElement getLoginButton(){
         return driver.findElement(By.cssSelector(".btnLogin:nth-child(3)"));
     }
+   public void clickLoginButton(){
+        getLoginButton().click();
+   }
     public WebElement getLogoutButton(){
         return driver.findElement(By.className("btnLogout"));
     }
     public WebElement getLangButton(){
         return driver.findElement(By.className("btnLocaleActivation"));
     }
+    public void clickLangButton(){
+        getLangButton().click();
+    }
     public WebElement getENButton(){
         return driver.findElement(By.className("btnEN"));
+    }
+    public void clickENButton(){
+        getENButton().click();
     }
     public WebElement getESButton(){
         return driver.findElement(By.className("btnES"));
     }
+    public void clickESButton(){
+        getESButton().click();
+    }
     public WebElement getFRButton(){
         return driver.findElement(By.className("btnFR"));
+    }
+    public void clickFRButton(){
+        getFRButton().click();
     }
     public WebElement getCNButton(){
         return driver.findElement(By.className("btnCN"));
     }
+    public void clickCNButton(){
+        getCNButton().click();
+    }
     public WebElement getUAButton(){
         return driver.findElement(By.className("btnUA"));
+    }
+    public void clickUAButton(){
+        getUAButton().click();
     }
 
 }
