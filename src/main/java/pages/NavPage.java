@@ -39,6 +39,9 @@ public class NavPage extends BasePage{
     public WebElement getLogoutButton(){
         return driver.findElement(By.className("btnLogout"));
     }
+    public void clickLogoutButton(){
+        getLogoutButton().click();
+    }
     public WebElement getLangButton(){
         return driver.findElement(By.className("btnLocaleActivation"));
     }

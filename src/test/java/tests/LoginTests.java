@@ -73,6 +73,26 @@ public class LoginTests extends BaseTest{
                 .withMessage("Login with correct credentials should redirect to home page")
                 .until(ExpectedConditions.urlToBe(baseUrl + "/home"));
     }
+    @Test (priority = 4, retryAnalyzer = RetryAnalyzer.class)
+    public void verifyLogoutAfterSuccesfullLogin(){
+        String email = "admin@admin.com";
+        String password = "12345";
+
+        loginPage.clearAndSendKeysToEmailInputField(email);
+        loginPage.clearAndSendKeysToPasswordInputField(password);
+        loginPage.clickLoginButton();
+
+        wait
+                .withMessage("Login with correct credentials should redirect to home page")
+                .until(ExpectedConditions.urlToBe(baseUrl + "/home"));
+
+        navPage.clickLogoutButton();
+
+        wait
+                .withMessage("Logout should redirect to login page")
+                .until(ExpectedConditions.urlToBe(baseUrl + "/login"));
+
+    }
 
 
 
