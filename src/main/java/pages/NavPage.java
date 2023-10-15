@@ -30,6 +30,9 @@ public class NavPage extends BasePage{
     public WebElement getSignUpButton(){
         return driver.findElement(By.cssSelector(".btnLogin:nth-child(4)"));
     }
+    public void clickSignupButton(){
+        getSignUpButton().click();
+    }
     public WebElement getLoginButton(){
         return driver.findElement(By.cssSelector(".btnLogin:nth-child(3)"));
     }
