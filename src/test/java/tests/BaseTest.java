@@ -9,6 +9,7 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
+import pages.CitiesPage;
 import pages.LoginPage;
 import pages.NavPage;
 import pages.SignupPage;
@@ -22,6 +23,7 @@ public abstract class BaseTest {
     protected LoginPage loginPage;
     protected NavPage navPage;
     protected SignupPage signupPage;
+    protected CitiesPage citiesPage;
 
     @BeforeClass
     public void setup() {
@@ -33,6 +35,7 @@ public abstract class BaseTest {
         loginPage = new LoginPage(driver, wait);
         navPage = new NavPage(driver, wait);
         signupPage = new SignupPage(driver, wait);
+        citiesPage = new CitiesPage(driver, wait);
 
     }
 

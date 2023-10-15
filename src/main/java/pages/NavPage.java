@@ -21,8 +21,14 @@ public class NavPage extends BasePage{
     public WebElement getAdminButton(){
         return driver.findElement(By.className("btnAdmin"));
     }
+    public void clickAdminButton(){
+        getAdminButton().click();
+    }
     public WebElement getCitiesLink(){
         return driver.findElement(By.className("btnAdminCities"));
+    }
+    public void clickCitiesLink(){
+        getCitiesLink().click();
     }
     public WebElement getUsersLink(){
         return driver.findElement(By.className("btnAdminUsers"));
