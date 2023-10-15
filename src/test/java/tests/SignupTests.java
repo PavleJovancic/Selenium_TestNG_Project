@@ -29,5 +29,25 @@ public class SignupTests extends BaseTest{
                 "Confirm password input type should be password");
     }
 
+    @Test(priority = 2, retryAnalyzer = RetryAnalyzer.class)
+    public void verifyDisplayErrorMessageWhenUserAlreadyExists(){
+        String name = "Another User";
+        String email = "admin@admin.com";
+        String password = "12345";
 
+        signupPage.clearAndSendKeysToNameInputField(name);
+        signupPage.clearAndSendKeysToEmailInputField(email);
+        signupPage.clearAndSendKeysToPasswordInputField(password);
+        signupPage.clearAndSendKeysToConfirmPasswordInputField(password);
+
+        signupPage.clickSignMeUpButton();
+
+        wait
+                .withMessage("Error message should appear when user already exist")
+                .until(ExpectedConditions.visibilityOf(signupPage.getErrorMessage()));
+        Assert.assertEquals(signupPage.getErrorMessageText(), "E-mail already exists",
+                "Error message should be 'E-mail already exists'");
+        Assert.assertEquals(signupPage.getCurrentPageURL(), baseUrl + "/signup",
+                "Page does not redirect when user already exist");
+    }
 }
