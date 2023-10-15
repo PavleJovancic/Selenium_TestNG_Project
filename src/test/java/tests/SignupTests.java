@@ -7,7 +7,7 @@ import org.testng.annotations.Test;
 public class SignupTests extends BaseTest{
 
     @BeforeMethod
-    public void visitSignupPage(){
+    public void visitSignupPage() {
         navPage.clickLangButton();
         navPage.clickENButton();
         navPage.clickSignupButton();

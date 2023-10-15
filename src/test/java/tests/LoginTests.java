@@ -6,10 +6,10 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-public class LoginTests extends BaseTest{
+public class LoginTests extends BaseTest {
 
     @BeforeMethod
-    public void visitLoginPage(){
+    public void visitLoginPage() {
         navPage.clickLangButton();
         navPage.clickENButton();
         navPage.clickLoginButton();
@@ -18,35 +18,37 @@ public class LoginTests extends BaseTest{
                 .until(ExpectedConditions.urlToBe(baseUrl + "/login"));
     }
 
-    @Test (priority = 1, retryAnalyzer = RetryAnalyzer.class)
-    public void checkInputTypes(){
+    @Test(priority = 1, retryAnalyzer = RetryAnalyzer.class)
+    public void checkInputTypes() {
         Assert.assertEquals(loginPage.getEmailInputFieldType(), "email",
                 "Email input type should be email");
         Assert.assertEquals(loginPage.getPasswordInputFieldType(), "password",
                 "Password input type should be password");
     }
 
-    @Test (priority = 2, retryAnalyzer = RetryAnalyzer.class)
-    public void verifyDisplayErrorMessageWhenUserDoesNotExists(){
-            String email = "userdoesnotexist@gmail.com";
-            String password = "incorrectpassword";
+    @Test(priority = 2, retryAnalyzer = RetryAnalyzer.class)
+    public void verifyDisplayErrorMessageWhenUserDoesNotExists() {
+        String email = "userdoesnotexist@gmail.com";
+        String password = "incorrectpassword";
 
-            loginPage.login(email, password);
+        loginPage.login(email, password);
 
-            wait
-                    .withMessage("Error message should appear when user does not exist")
-                    .until(ExpectedConditions.visibilityOf(loginPage.getErrorMessage()));
-            Assert.assertEquals(loginPage.getErrorMessageText(), "User does not exists",
-                    "Error message should be 'User does not exists'");
-            Assert.assertEquals(loginPage.getCurrentPageURL(), baseUrl + "/login",
-                    "Page does not redirect when user does not exist");
+        wait
+                .withMessage("Error message should appear when user does not exist")
+                .until(ExpectedConditions.visibilityOf(loginPage.getErrorMessage()));
+        Assert.assertEquals(loginPage.getErrorMessageText(), "User does not exists",
+                "Error message should be 'User does not exists'");
+        Assert.assertEquals(loginPage.getCurrentPageURL(), baseUrl + "/login",
+                "Page does not redirect when user does not exist");
     }
-    @Test (priority = 3, retryAnalyzer = RetryAnalyzer.class)
-    public void verifyDisplayErrorWhenUsingIncorrectPassword(){
+
+    @Test(priority = 3, retryAnalyzer = RetryAnalyzer.class)
+    public void verifyDisplayErrorWhenUsingIncorrectPassword() {
         String email = "admin@admin.com";
         String password = "incorrectpassword";
 
-        loginPage.login(email, password);;
+        loginPage.login(email, password);
+        ;
 
         wait
                 .withMessage("Error message should appear when password is incorrect")
@@ -56,8 +58,9 @@ public class LoginTests extends BaseTest{
         Assert.assertEquals(loginPage.getCurrentPageURL(), baseUrl + "/login",
                 "Page does not redirect when password is incorrect");
     }
-    @Test (priority = 4, retryAnalyzer = RetryAnalyzer.class)
-    public void verifyLoginWithCorrectCredentials(){
+
+    @Test(priority = 4, retryAnalyzer = RetryAnalyzer.class)
+    public void verifyLoginWithCorrectCredentials() {
         String email = "admin@admin.com";
         String password = "12345";
 
@@ -67,8 +70,9 @@ public class LoginTests extends BaseTest{
                 .withMessage("Login with correct credentials should redirect to home page")
                 .until(ExpectedConditions.urlToBe(baseUrl + "/home"));
     }
-    @Test (priority = 4, retryAnalyzer = RetryAnalyzer.class)
-    public void verifyLogoutAfterSuccesfullLogin(){
+
+    @Test(priority = 4, retryAnalyzer = RetryAnalyzer.class)
+    public void verifyLogoutAfterSuccesfullLogin() {
         String email = "admin@admin.com";
         String password = "12345";
 
@@ -83,9 +87,5 @@ public class LoginTests extends BaseTest{
         wait
                 .withMessage("Logout should redirect to login page")
                 .until(ExpectedConditions.urlToBe(baseUrl + "/login"));
-
     }
-
-
-
 }
