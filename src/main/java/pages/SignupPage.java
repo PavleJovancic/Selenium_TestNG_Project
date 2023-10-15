@@ -69,6 +69,14 @@ public class SignupPage extends BasePage {
     public void clickSignMeUpButton() {
         getSignMeUpButton().click();
     }
+    public void signup(String name, String email, String password){
+        clearAndSendKeysToNameInputField(name);
+        clearAndSendKeysToEmailInputField(email);
+        clearAndSendKeysToPasswordInputField(password);
+        clearAndSendKeysToConfirmPasswordInputField(password);
+
+        clickSignMeUpButton();
+    }
 
     public WebElement getErrorMessage(){
         return driver.findElement(By.className("v-snack__wrapper"));

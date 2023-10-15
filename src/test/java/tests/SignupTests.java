@@ -35,12 +35,7 @@ public class SignupTests extends BaseTest{
         String email = "admin@admin.com";
         String password = "12345";
 
-        signupPage.clearAndSendKeysToNameInputField(name);
-        signupPage.clearAndSendKeysToEmailInputField(email);
-        signupPage.clearAndSendKeysToPasswordInputField(password);
-        signupPage.clearAndSendKeysToConfirmPasswordInputField(password);
-
-        signupPage.clickSignMeUpButton();
+        signupPage.signup(name, email, password);
 
         wait
                 .withMessage("Error message should appear when user already exist")
@@ -57,12 +52,7 @@ public class SignupTests extends BaseTest{
         String email = "johndoe@mail.com";
         String password = "12345";
 
-        signupPage.clearAndSendKeysToNameInputField(name);
-        signupPage.clearAndSendKeysToEmailInputField(email);
-        signupPage.clearAndSendKeysToPasswordInputField(password);
-        signupPage.clearAndSendKeysToConfirmPasswordInputField(password);
-
-        signupPage.clickSignMeUpButton();
+        signupPage.signup(name, email, password);
 
         wait
                 .withMessage("After successful signup dialog should appear with text 'IMPORTANT: Verify your account'")
