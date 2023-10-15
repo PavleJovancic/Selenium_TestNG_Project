@@ -16,6 +16,9 @@ public class CitiesPage extends BasePage{
     public void clickNewItemButton(){
         getNewItemButton().click();
     }
+    public WebElement getNewItemDialog(){
+        return driver.findElement(By.className("dlgNewEditItem"));
+    }
     public WebElement getNewItemNameInputField(){
         return driver.findElement(By.id("name"));
     }
@@ -27,6 +30,17 @@ public class CitiesPage extends BasePage{
     }
     public void clickNewItemDialogCancelButton(){
         getNewItemDialogCancelButton().click();
+    }
+    public void clearAndSendKeysToNewItemNameInput(String city){
+        getNewItemNameInputField().clear();
+        getNewItemNameInputField().sendKeys(city);
+    }
+    public WebElement getNewItemDialogSaveButton(){
+        return driver.findElement(By.className("btnSave"));
+    }
+
+    public void clickNewItemDialogSaveButton(){
+        getNewItemDialogSaveButton().click();
     }
     public WebElement getEditButton(){
         return driver.findElement(By.id("edit"));
@@ -48,6 +62,9 @@ public class CitiesPage extends BasePage{
     }
     public void clickEditItemDialogCancelButton(){
         getEditItemDialogCancelButton().click();
+    }
+    public WebElement getSavedSuccessfullyDialog(){
+        return driver.findElement(By.xpath("//*[contains(text(), ' Saved successfully ')]"));
     }
 
     public WebElement getSearchInputField(){

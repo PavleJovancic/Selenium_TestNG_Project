@@ -37,4 +37,25 @@ public class AdminCitiesTests extends BaseTest{
                 "Edit input field type for item should be 'text'");
         citiesPage.clickEditItemDialogCancelButton();
     }
+
+    @Test(priority = 2, retryAnalyzer = RetryAnalyzer.class)
+    public void verifyCreateNewCity(){
+        String city = "New Asia";
+
+        citiesPage.clickNewItemButton();
+        wait
+                .withMessage("New item dialog should be present")
+                .until(ExpectedConditions.visibilityOf(citiesPage.getNewItemDialog()));
+
+        citiesPage.clearAndSendKeysToNewItemNameInput(city);
+
+        wait
+                .withMessage("Save button should be enabled after text is entered")
+                .until(ExpectedConditions.elementToBeClickable(citiesPage.getNewItemDialogSaveButton()));
+
+        citiesPage.clickNewItemDialogSaveButton();
+        wait
+                .withMessage("Saved successfully dialog is present")
+                .until(ExpectedConditions.visibilityOf(citiesPage.getSavedSuccessfullyDialog()));
+    }
 }
