@@ -76,4 +76,17 @@ public class SignupPage extends BasePage {
     public String getErrorMessageText(){
         return driver.findElement(By.cssSelector(".v-snack__wrapper li")).getText();
     }
+
+    public WebElement getVerifyYourAccountDialog(){
+        return  driver.findElement(By.cssSelector(".v-card__title"));
+    }
+    public String getVerifyYourAccountDialogText(){
+        return getVerifyYourAccountDialog().getText();
+    }
+    public WebElement getVerifyYourAccountDialogCloseButton(){
+        return driver.findElement(By.cssSelector(".v-card__actions button "));
+    }
+    public void clickVerifyYourAccountDialogCloseButton(){
+        getVerifyYourAccountDialogCloseButton().click();
+    }
 }

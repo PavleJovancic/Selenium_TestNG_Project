@@ -50,4 +50,30 @@ public class SignupTests extends BaseTest{
         Assert.assertEquals(signupPage.getCurrentPageURL(), baseUrl + "/signup",
                 "Page does not redirect when user already exist");
     }
+
+    @Test(priority = 3)
+    public void verifySuccesfullSignup() {
+        String name = "John Doe";
+        String email = "johndoe@mail.com";
+        String password = "12345";
+
+        signupPage.clearAndSendKeysToNameInputField(name);
+        signupPage.clearAndSendKeysToEmailInputField(email);
+        signupPage.clearAndSendKeysToPasswordInputField(password);
+        signupPage.clearAndSendKeysToConfirmPasswordInputField(password);
+
+        signupPage.clickSignMeUpButton();
+
+        wait
+                .withMessage("After successful signup dialog should appear with text 'IMPORTANT: Verify your account'")
+                .until(ExpectedConditions.visibilityOf(signupPage.getVerifyYourAccountDialog()));
+        Assert.assertEquals(signupPage.getVerifyYourAccountDialogText(), "IMPORTANT: Verify your account",
+                "Successful dialog text should be 'IMPORTANT: Verify your account'");
+
+        signupPage.clickVerifyYourAccountDialogCloseButton();
+
+        wait
+                .withMessage("After sign page should be redirected to home page")
+                .until(ExpectedConditions.urlToBe(baseUrl + "/home"));
+    }
 }
