@@ -35,7 +35,7 @@ public class AdminCitiesTests extends BaseTest{
         citiesPage.clickCitiesTableRowEditButton(rowNumber);
         Assert.assertEquals(citiesPage.getEditItemNameInputFieldType(), "text",
                 "Edit input field type for item should be 'text'");
-        citiesPage.clickEditItemDialogCancelButton();
+
     }
 
     @Test(priority = 2, retryAnalyzer = RetryAnalyzer.class)
@@ -54,6 +54,32 @@ public class AdminCitiesTests extends BaseTest{
                 .until(ExpectedConditions.elementToBeClickable(citiesPage.getNewItemDialogSaveButton()));
 
         citiesPage.clickNewItemDialogSaveButton();
+        wait
+                .withMessage("Saved successfully dialog is present")
+                .until(ExpectedConditions.visibilityOf(citiesPage.getSavedSuccessfullyDialog()));
+    }
+
+    @Test(priority = 3, retryAnalyzer = RetryAnalyzer.class)
+    public void verifyEditCity() throws InterruptedException {
+        String city = "New Asia";
+        String cityEdited = "New Asia Edited";
+
+        citiesPage.clearAndSendKeysToSearchInputField(city);
+
+        ;
+        wait
+                .withMessage("Search result should have only one result")
+                .until(ExpectedConditions.numberOfElementsToBe(citiesPage.getCitiesTableRows(), 1));
+
+        citiesPage.clickEditButton();
+
+        citiesPage.clearAndSendKeysToEditItemNameInputField(cityEdited);
+        wait
+                .withMessage("Save button should be enabled after text is entered")
+                .until(ExpectedConditions.elementToBeClickable(citiesPage.getEditItemDialogSaveButton()));
+
+        citiesPage.clickEditItemDialogSaveButton();
+
         wait
                 .withMessage("Saved successfully dialog is present")
                 .until(ExpectedConditions.visibilityOf(citiesPage.getSavedSuccessfullyDialog()));

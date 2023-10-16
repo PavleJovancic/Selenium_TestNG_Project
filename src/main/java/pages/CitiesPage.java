@@ -1,9 +1,12 @@
 package pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.util.List;
 
 public class CitiesPage extends BasePage{
     public CitiesPage(WebDriver driver, WebDriverWait wait) {
@@ -63,12 +66,35 @@ public class CitiesPage extends BasePage{
     public void clickEditItemDialogCancelButton(){
         getEditItemDialogCancelButton().click();
     }
+    public void clearAndSendKeysToEditItemNameInputField(String city){
+        getEditItemNameInputField().click();
+        getEditItemNameInputField().sendKeys(Keys.CONTROL, "a");
+        getEditItemNameInputField().sendKeys(Keys.BACK_SPACE);
+        getEditItemNameInputField().sendKeys(city);
+    }
+    public WebElement getEditItemDialogSaveButton(){
+        return driver.findElement(By.className("btnSave"));
+    }
+
+    public void clickEditItemDialogSaveButton(){
+        getEditItemDialogSaveButton().click();
+    }
     public WebElement getSavedSuccessfullyDialog(){
         return driver.findElement(By.xpath("//*[contains(text(), ' Saved successfully ')]"));
     }
 
     public WebElement getSearchInputField(){
         return driver.findElement(By.id("search"));
+    }
+    public void clearAndSendKeysToSearchInputField(String search){
+        getSearchInputField().clear();
+        getSearchInputField().sendKeys(search);
+    }
+    public WebElement getCitiesTableRow(){
+        return driver.findElement(By.cssSelector("tbody > tr"));
+    }
+    public By getCitiesTableRows() {
+        return By.cssSelector("tbody > tr");
     }
 
 }
