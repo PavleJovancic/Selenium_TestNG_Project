@@ -18,4 +18,12 @@ public class LocaleTests extends BaseTest{
                 .until(ExpectedConditions.urlToBe(baseUrl + "/login"));
     }
 
+    @Test(priority = 1, retryAnalyzer = RetryAnalyzer.class)
+    public void verifySetLocaleToES(){
+        navPage.clickLangButton();
+        navPage.clickESButton();
+
+        Assert.assertEquals(loginPage.getPageHeadingText(), "Ingresar",
+                "Login page heading should change to 'Ingresar'");
+    }
 }
