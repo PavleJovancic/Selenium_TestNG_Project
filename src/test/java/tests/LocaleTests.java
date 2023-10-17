@@ -53,4 +53,13 @@ public class LocaleTests extends BaseTest{
         Assert.assertEquals(loginPage.getPageHeadingText(), "Вхід",
                 "Login page heading should change to 'Вхід'");
     }
+
+    @Test(priority = 5, retryAnalyzer = RetryAnalyzer.class)
+    public void verifySetLocaleToEN(){
+        navPage.clickLangButton();
+        navPage.clickENButton();
+
+        Assert.assertEquals(loginPage.getPageHeadingText(), "Login",
+                "Login page heading should change to 'Login'");
+    }
 }
