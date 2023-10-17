@@ -56,4 +56,9 @@ public abstract class BaseTest {
     public void tearDown(){
         driver.quit();
     }
+
+    public void navigateToUrl(String url){
+        driver.navigate().to(url);
+    }
+
 }
