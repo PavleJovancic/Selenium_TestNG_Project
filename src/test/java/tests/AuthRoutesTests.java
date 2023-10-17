@@ -25,4 +25,14 @@ public class AuthRoutesTests extends BaseTest{
                 .withMessage("If not logged in page should redirect to login page")
                 .until(ExpectedConditions.urlToBe(baseUrl + "/login"));
     }
+
+    @Test(priority = 3, retryAnalyzer = RetryAnalyzer.class)
+    public void forbidVisitsToAdminCitiesUrlIfNotAuthenticated(){
+
+        navigateToUrl(baseUrl + "/admin/cities");
+
+        wait
+                .withMessage("If not logged in page should redirect to login page")
+                .until(ExpectedConditions.urlToBe(baseUrl + "/login"));
+    }
 }
