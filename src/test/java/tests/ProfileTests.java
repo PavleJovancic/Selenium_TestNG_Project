@@ -71,10 +71,41 @@ public class ProfileTests extends BaseTest{
         Assert.assertEquals(profilePage.getCountryInputFieldText(), country,
                 "Country should be changed");
         Assert.assertEquals(profilePage.getTwitterInputFieldText(), twitter,
-                "Tshould be changed");
+                "Twitter should be changed");
         Assert.assertEquals(profilePage.getGitHubInputFieldText(), github,
-                "should be changed");
+                "GitHub should be changed");
 
+    }
+    @Test(priority = 3, retryAnalyzer = RetryAnalyzer.class)
+    public void verifyChangePassword(){
+        String currentPassword = "12345";
+        String newPassword = "12345";
+
+        profilePage.clickChangeMyPasswordButton();
+        wait
+                .withMessage("Change my password dialog should be present")
+                .until(ExpectedConditions.visibilityOf(profilePage.getChangeMyPasswordDialog()));
+
+        Assert.assertEquals(profilePage.getCurrentPasswordInputFieldType(), "password",
+                "Current password input type should be password");
+        Assert.assertEquals(profilePage.getNewPasswordInputFieldType(), "password",
+                "New password input type should be password");
+        Assert.assertEquals(profilePage.getConfirmPasswordInputFieldType(), "password",
+                "Confirm password input type should be password");
+
+        profilePage.clearAndSendKeysToCurrentPasswordInputField(currentPassword);
+        profilePage.clearAndSendKeysToNewPasswordInputField(newPassword);
+        profilePage.clearAndSendKeysToConfirmPasswordInputField(newPassword);
+
+        wait
+                .withMessage("Save button should be clickable after password inputs")
+                .until(ExpectedConditions.elementToBeClickable(profilePage.getChangeMyPasswordDialogSaveButton()));
+
+        profilePage.clickChangeMyPasswordDialogSaveButton();
+
+        wait
+                .withMessage("Password changed successfully dialog is present")
+                .until(ExpectedConditions.visibilityOf(profilePage.getPasswordChangedSuccessfullyDialog()));
     }
 
 

@@ -116,11 +116,58 @@ public class ProfilePage extends BasePage{
     public WebElement getChangeMyPasswordButton(){
         return driver.findElement(By.className("btnChangePassword"));
     }
+    public void clickChangeMyPasswordButton(){
+        getChangeMyPasswordButton().click();
+    }
+    public WebElement getChangeMyPasswordDialog(){
+        return driver.findElement(By.className("v-card__title"));
+    }
+    public WebElement getCurrentPasswordInputField(){
+        return driver.findElement(By.id("oldPassword"));
+    }
+    public String getCurrentPasswordInputFieldType(){
+        return getCurrentPasswordInputField().getAttribute("type");
+    }
+    public void clearAndSendKeysToCurrentPasswordInputField(String password){
+        getCurrentPasswordInputField().clear();
+        getCurrentPasswordInputField().sendKeys(password);
+    }
+
+    public WebElement getNewPasswordInputField(){
+        return driver.findElement(By.id("newPassword"));
+    }
+    public String getNewPasswordInputFieldType(){
+        return getNewPasswordInputField().getAttribute("type");
+    }
+    public void clearAndSendKeysToNewPasswordInputField(String password){
+        getNewPasswordInputField().clear();
+        getNewPasswordInputField().sendKeys(password);
+    }
+    public WebElement getConfirmPasswordInputField(){
+        return driver.findElement(By.id("confirmPassword"));
+    }
+    public String getConfirmPasswordInputFieldType(){
+        return getConfirmPasswordInputField().getAttribute("type");
+    }
+    public void clearAndSendKeysToConfirmPasswordInputField(String password){
+        getConfirmPasswordInputField().clear();
+        getConfirmPasswordInputField().sendKeys(password);
+    }
+    public WebElement getChangeMyPasswordDialogSaveButton(){
+        return driver.findElement(By.id("updatePassword"));
+    }
+    public void clickChangeMyPasswordDialogSaveButton(){
+        getChangeMyPasswordButton().click();
+    }
+    public WebElement getPasswordChangedSuccessfullyDialog(){
+        return driver.findElement(By.xpath("//*[contains(text(),'Password changed successfully')]"));
+    }
+
     public WebElement getProfileSavedSuccessfullyDialog(){
-        return driver.findElement(By.xpath("//*[contains(text(), ' Profile saved successfuly ')]"));
+        return driver.findElement(By.xpath("//*[contains(text(), 'Profile saved successfuly')]"));
     }
     public WebElement getProfileSavedSuccessfullyDialogButton(){
-        return driver.findElement(By.xpath("//*[contains(text(),' Profile saved successfuly ')]/button"));
+        return driver.findElement(By.xpath("//*[contains(text(),'Profile saved successfuly')]/button"));
     }
     public void clickProfileSavedSuccessfullyDialogButton(){
         getProfileSavedSuccessfullyDialogButton().click();
