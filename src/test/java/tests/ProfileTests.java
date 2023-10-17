@@ -3,7 +3,6 @@ package tests;
 import helpers.RetryAnalyzer;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -41,6 +40,44 @@ public class ProfileTests extends BaseTest{
                 "GitHub input type should be url");
 
     }
+
+    @Test(priority = 2, retryAnalyzer = RetryAnalyzer.class)
+    public void verifyEditProfile(){
+        String name = "John Doe";
+        String phone = "+12347755633";
+        String city = "Prague";
+        String country = "Czech Republic";
+        String twitter = "https://twitter.com/profile/johndoe123";
+        String github = "https://github.com/johndoe";
+
+        profilePage.clearAndSendKeysToNameInputField(name);
+        profilePage.clearAndSendKeysToPhoneInputField(phone);
+        profilePage.clearAndSendKeysToCityInputField(city);
+        profilePage.clearAndSendKeysToCountryInputField(country);
+        profilePage.clearAndSendKeysToTwitterInputField(twitter);
+        profilePage.clearAndSendKeysToGitHubInputField(github);
+
+        wait
+                .withMessage("Profile saved successfully dialog is present")
+                .until(ExpectedConditions.visibilityOf(profilePage.getProfileSavedSuccessfullyDialog()));
+        profilePage.clickProfileSavedSuccessfullyDialogButton();
+
+        Assert.assertEquals(profilePage.getNameInputFieldText(), name,
+                "Name should be changed");
+        Assert.assertEquals(profilePage.getPhoneInputFieldText(), phone,
+                "Phone should be changed");
+        Assert.assertEquals(profilePage.getCityInputFieldText(), city,
+                "City should be changed");
+        Assert.assertEquals(profilePage.getCountryInputFieldText(), country,
+                "Country should be changed");
+        Assert.assertEquals(profilePage.getTwitterInputFieldText(), twitter,
+                "Tshould be changed");
+        Assert.assertEquals(profilePage.getGitHubInputFieldText(), github,
+                "should be changed");
+
+    }
+
+
 
 
 
