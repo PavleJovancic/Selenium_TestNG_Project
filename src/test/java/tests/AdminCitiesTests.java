@@ -81,7 +81,7 @@ public class AdminCitiesTests extends BaseTest{
         citiesPage.clickEditItemDialogSaveButton();
 
         wait
-                .withMessage("Saved successfully dialog is present")
+                .withMessage("Saved successfully dialog should be present")
                 .until(ExpectedConditions.visibilityOf(citiesPage.getSavedSuccessfullyDialog()));
     }
 
@@ -96,5 +96,29 @@ public class AdminCitiesTests extends BaseTest{
                 .until(ExpectedConditions.numberOfElementsToBe(citiesPage.getCitiesTableRows(), 1));
         Assert.assertEquals(citiesPage.getCitiesTableNameCellText(), city,
                 "Searched city name should be the same as name in a cell");
+    }
+
+    @Test(priority = 5, retryAnalyzer = RetryAnalyzer.class)
+    public void verifyDeleteCity(){
+        String city = "New Asia Edited";
+
+        citiesPage.clearAndSendKeysToSearchInputField(city);
+
+        wait
+                .withMessage("Search result should have only one result")
+                .until(ExpectedConditions.numberOfElementsToBe(citiesPage.getCitiesTableRows(), 1));
+        Assert.assertEquals(citiesPage.getCitiesTableNameCellText(), city,
+                "Searched city name should be the same as name in a cell");
+
+        citiesPage.clickCitiesTableDeleteButton();
+
+        wait
+                .withMessage("Delete warning dialog should be present")
+                .until(ExpectedConditions.visibilityOf(citiesPage.getDeleteWarningDialog()));
+
+        citiesPage.clickDeleteWarningDialogDeleteButton();
+        wait
+                .withMessage("Deleted successfully dialog should be present")
+                .until(ExpectedConditions.visibilityOf(citiesPage.getDeletedSuccessfullyDialog()));
     }
 }

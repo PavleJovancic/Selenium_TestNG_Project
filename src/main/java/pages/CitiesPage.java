@@ -102,5 +102,23 @@ public class CitiesPage extends BasePage{
     public String getCitiesTableNameCellText(){
         return getCitiesTableNameCell().getText();
     }
+    public WebElement getCitiesTableDeleteButton(){
+        return driver.findElement(By.id("delete"));
+    }
+    public void clickCitiesTableDeleteButton(){
+        getCitiesTableDeleteButton().click();
+    }
+    public WebElement getDeleteWarningDialog(){
+        return driver.findElement(By.cssSelector("header.warning"));
+    }
+    public WebElement getDeleteWarningDialogDeleteButton(){
+        return driver.findElement(By.xpath("//button/span[contains(text(), 'Delete')]"));
+    }
+    public void clickDeleteWarningDialogDeleteButton(){
+        getDeleteWarningDialogDeleteButton().click();
+    }
+    public WebElement getDeletedSuccessfullyDialog(){
+        return driver.findElement(By.xpath("//*[contains(text(), 'Deleted successfully')]"));
+    }
 
 }
