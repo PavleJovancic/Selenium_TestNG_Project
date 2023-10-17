@@ -35,4 +35,13 @@ public class LocaleTests extends BaseTest{
         Assert.assertEquals(loginPage.getPageHeadingText(), "Connexion",
                 "Login page heading should change to 'Connexion'");
     }
+
+    @Test(priority = 3, retryAnalyzer = RetryAnalyzer.class)
+    public void verifySetLocaleToCN(){
+        navPage.clickLangButton();
+        navPage.clickCNButton();
+
+        Assert.assertEquals(loginPage.getPageHeadingText(), "登录",
+                "Login page heading should change to '登录'");
+    }
 }
