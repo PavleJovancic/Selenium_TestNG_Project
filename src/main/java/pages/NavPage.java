@@ -18,6 +18,9 @@ public class NavPage extends BasePage{
     public WebElement getMyProfileLink(){
         return driver.findElement(By.className("btnProfile"));
     }
+    public void clickMyProfileLink(){
+        getMyProfileLink().click();
+    }
     public WebElement getAdminButton(){
         return driver.findElement(By.className("btnAdmin"));
     }
