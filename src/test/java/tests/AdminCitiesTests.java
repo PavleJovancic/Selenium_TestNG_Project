@@ -59,8 +59,8 @@ public class AdminCitiesTests extends BaseTest{
                 .until(ExpectedConditions.visibilityOf(citiesPage.getSavedSuccessfullyDialog()));
     }
 
-    @Test(priority = 3, retryAnalyzer = RetryAnalyzer.class)
-    public void verifyEditCity() throws InterruptedException {
+    @Test(priority = 4, retryAnalyzer = RetryAnalyzer.class)
+    public void verifyEditCity(){
         String city = "New Asia";
         String cityEdited = "New Asia Edited";
 
@@ -83,5 +83,18 @@ public class AdminCitiesTests extends BaseTest{
         wait
                 .withMessage("Saved successfully dialog is present")
                 .until(ExpectedConditions.visibilityOf(citiesPage.getSavedSuccessfullyDialog()));
+    }
+
+    @Test(priority = 3, retryAnalyzer = RetryAnalyzer.class)
+    public void verifySearchCity(){
+        String city = "New Asia";
+
+        citiesPage.clearAndSendKeysToSearchInputField(city);
+
+        wait
+                .withMessage("Search result should have only one result")
+                .until(ExpectedConditions.numberOfElementsToBe(citiesPage.getCitiesTableRows(), 1));
+        Assert.assertEquals(citiesPage.getCitiesTableNameCellText(), city,
+                "Searched city name should be the same as name in a cell");
     }
 }

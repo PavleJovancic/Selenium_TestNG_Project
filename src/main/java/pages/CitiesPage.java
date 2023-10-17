@@ -96,5 +96,11 @@ public class CitiesPage extends BasePage{
     public By getCitiesTableRows() {
         return By.cssSelector("tbody > tr");
     }
+    public WebElement getCitiesTableNameCell(){
+        return driver.findElement(By.cssSelector("tbody > tr > td:nth-child(2)"));
+    }
+    public String getCitiesTableNameCellText(){
+        return getCitiesTableNameCell().getText();
+    }
 
 }
