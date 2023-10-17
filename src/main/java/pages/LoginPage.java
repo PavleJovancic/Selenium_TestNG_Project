@@ -47,4 +47,10 @@ public class LoginPage extends BasePage{
         clearAndSendKeysToPasswordInputField(password);
         clickLoginButton();
     }
+    public WebElement getPageHeading(){
+        return driver.findElement(By.cssSelector("h1.display-2"));
+    }
+    public String getPageHeadingText(){
+        return getPageHeading().getText();
+    }
 }
